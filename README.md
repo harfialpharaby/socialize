@@ -100,28 +100,93 @@ GET /users/register
 ```bash
 POST /users/register
 
-
+req = {
+    body: {
+        {
+            first_name: STRING<firstName>,
+            last_name: STRING<lastName>,
+            password: STRING<password>,
+            email: STRING<email>,
+            username: STRING<username>,
+            profilPict: '161bbd1abc24d29e1abefd0f21ff90f8'
+        }
+    }
+}
 ```
 ### Show own profile
 ```bash
-```
-### Show add feed
-```bash
+GET /user/page
+
+req = {
+    session: {
+        userId: INTEGER<user id>,
+        fullName: STRING<user full name>
+    }
+}
 ```
 ### Show other profile
 ```bash
+GET /otherpage/:id
+
+req = {
+    params: {
+        id: INTEGER<other user id>
+    },
+    session: {
+        fullName: STRING<logged in user full name>
+    }
+}
 ```
 ### Show edit profile page
 ```bash
+GET /users/edit
+
+req = {
+    session: {
+        userId: INTEGER<logged in user id>,
+        fullName: STRING<logged in user full name>
+    },
+    data: STRING<req.query success='success message' or failed='failed message'>
+}
 ```
 ### Edit profile page
 ```bash
+POST /users/edit
+
+req = {
+    first_name: STRING<new first name>,
+    last_name:STRING<new last name>,
+    old_password: STRING<old password to indentify the user>,
+    new_password: STRING<new password or null to unchange password>,
+    email: STRING<new email>,
+    username: STRING<new username>,
+    session: {
+        userId: INTEGER<logged in user id>
+    }
+}
 ```
 ### Upload profile image
 ```bash
+POST /users/profile
+
+req = {
+    file: {
+        filename: STRING<new uploaded file image>
+    },
+    session: {
+        userId: INTEGER<logged in user id>
+    }
+}
 ```
 
 # Tag Docs
 ### Show tags list
 ```bash
+GET /tags
+
+req = {
+    session: {
+        fullName: STRING<logged in user full name>
+    }
+}
 ```
