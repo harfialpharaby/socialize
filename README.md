@@ -190,3 +190,53 @@ req = {
     }
 }
 ```
+
+# Middlewares
+### CheckIsUser
+Validate logged in user to acessing other user page.
+#### Usage :
+```bash
+const checkIsUser = require('../middlewares/checkIsUser')
+```
+#### How to use on every children path, example use on `/otherpage` parent path route ?
+```bash
+router.get('/otherpage',checkIsUser)
+router.get('/otherpage/:id', UserController.otherPage)
+```
+
+### checkLogin
+Validate user is in login state so that user can access all logged in features.
+#### Usage :
+```bash
+const checkLogin = require('../middlewares/checkLogin')
+```
+#### How to use on every children path, example use on `/users` parent path route ?
+```bash
+router.use('/',checkLogin)
+router.get('/page', UserController.userPage)
+```
+
+### redirectIfLogin
+#### Usage :
+```bash
+const redirectIfLogin = require('../middlewares/redirectIfLogin')
+```
+#### How to use on every children path, example use on `/users` parent path route ?
+```bash
+router.get('/', redirectIfLogin)
+router.get('/', UserController.loginPage)
+```
+
+# Helpers
+### Hashingpassword
+#### Usage
+```bash
+const hashingPassword = require('../helpers/hashingPassord')
+```
+#### How to use it ?
+```bash
+hashingPassword(
+    STRING<random secret wether its auto generated or save on database for each data>, 
+    STRING<plain password typed by user on browser>
+)
+```
