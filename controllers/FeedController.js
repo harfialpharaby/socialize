@@ -56,7 +56,6 @@ class FeedController {
                         }
                     }
                 });
-
                 res.render('feeds/list', {feeds: feedsWithTags, fullName});
             }).catch((err) => {
                 res.send(err);

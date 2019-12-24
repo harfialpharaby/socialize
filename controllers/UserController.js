@@ -4,7 +4,7 @@ const Tag = require('../models').Tag
 
 class UserController {
     static registerPage(req, res){
-        res.render('users/register', {})
+        res.render('users/register')
     }
 
     static register(req, res){
@@ -15,7 +15,8 @@ class UserController {
             last_name: last_name,
             password: password,
             email: email,
-            username: username
+            username: username,
+            profilPict: '161bbd1abc24d29e1abefd0f21ff90f8'
         })
         .then(()=> {
             res.redirect('/user')
